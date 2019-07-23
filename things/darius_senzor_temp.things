@@ -1,0 +1,2 @@
+Thing	onewiregpio:sensor:darius1_w1_temp	"Darius"	[gpio_bus_file="/sys/bus/w1/devices/28-00000a960a6f/w1_slave",refresh_time=30]
+Thing	onewiregpio:sensor:darius_w1_temp	"Darius_1"	[gpio_bus_file="/sys/bus/w1/devices/28-000009b84449/w1_slave",refresh_time=30]

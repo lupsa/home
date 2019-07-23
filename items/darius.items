@@ -1,0 +1,20 @@
+Group Heating <house>
+
+// switch-uri
+Switch	Centrala	"Centrala"	["Switchable"]		{gpio="pin:21 activelow:no initialValue:low"}
+Switch	Lampa		"Lampa"		["Switchable"]		{gpio="pin:20 activelow:no initialValue:low"}
+
+
+// temperaturi in camere
+Number:Temperature	darius_temperatura	"Darius [%.1f]"		<temperature>	(Heating)	["CurrentTemperature"]	{channel="onewiregpio:sensor:darius_w1_temp:temperature"} 
+Number:Temperature	darius1_temperatura	"Darius_1 [%.1f]"	<temperature>	(Heating)	["CurrentTemperature"]	{channel="onewiregpio:sensor:darius1_w1_temp:temperature"} 
+Number setare_temperatura "Setare temperatura [%d]"	<heating>
+Number temperatura_medie	"Temperatura medie [%d]" <temperature>
+
+// situatie vreme
+Number   vremea_temperatura	"Temperatura [%.1f °C]"		{weather="locationId=Bistrita, type=temperature, property=current"}
+Number   vremea_umiditate	"Umiditate [%d %%]"		{weather="locationId=Bistrita, type=atmosphere, property=humidity"}
+String   vremea_stare		"Stare vreme [%s]"		{weather="locationId=Bistrita, type=condition, property=text"}
+Number   vremea_nori		"Inorat [%.0f %%]"		{weather="locationId=Bistrita, type=clouds, property=percent"}
+Number   vremea_precipitatii	"Precipitatii [%d %%]"		{weather="locationId=Bistrita, type=precipitation, property=probability"}
+String   vremea_MinMax		"Min/Max [%s °C]"		{weather="locationId=Bistrita, forecast=0, type=temperature, property=minMax, scale=0"}

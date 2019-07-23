@@ -1,0 +1,20 @@
+rule "programare centrala"
+when
+	Item darius1_temperatura changed or Item darius_temperatura changed or Item setare_temperatura changed or System started
+then
+	if(setare_temperatura.state == NULL){setare_temperatura.postUpdate(18)}
+	val temp_setata = (setare_temperatura.state as Number).floatValue
+	val darius_temp = (darius_temperatura.state as Number).floatValue
+	val darius1_temp = (darius1_temperatura.state as Number).floatValue
+	val temp_medie = (darius_temp+darius1_temp)/2
+	val temp_maxima = temp_setata + 0.5
+	val stare_centrala = Centrala.state
+
+	temperatura_medie.postUpdate(temp_medie)	
+	if(temp_medie <= temp_setata && stare_centrala == OFF){
+		Centrala.sendCommand(ON)
+	} else if(temp_medie >= temp_maxima && stare_centrala == ON){
+		Centrala.sendCommand(OFF)
+	}
+	
+end

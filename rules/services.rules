@@ -1,0 +1,8 @@
+rule "mesaj telegram"
+when
+	Item Centrala changed or Item Lampa changed
+then
+	val dispozitiv = triggeringItem.name
+	val switch_stare = triggeringItem.state
+	sendTelegram("bot1", "%s: %s", dispozitiv, switch_stare)
+end
