@@ -1,0 +1,7 @@
+
+Strategies {
+  default = everyUpdate
+}
+Items {
+	setare_temperatura: strategy  = everyChange, restoreOnStartup 
+}
