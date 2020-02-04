@@ -1,6 +1,6 @@
 rule "programare centrala"
 when
-	Item darius1_temperatura changed or Item darius_temperatura changed or Item setare_temperatura changed or System started
+	Item darius1_temperatura changed or Item darius_temperatura changed or Item setare_temperatura changed or System started or Item mod_vara changed
 then
 	val temp_setata = (setare_temperatura.state as Number).floatValue
 	val darius_temp = (darius_temperatura.state as Number).floatValue
@@ -8,12 +8,32 @@ then
 	val temp_medie = (darius_temp+darius1_temp)/2
 	val temp_maxima = temp_setata + 0.7
 	val stare_centrala = Centrala.state
+	val stare_mod_vara = mod_vara.state
 
 	temperatura_medie.postUpdate(temp_medie)	
-	if(temp_medie <= temp_setata && stare_centrala == OFF){
-		Centrala.sendCommand(ON)
-	} else if(temp_medie >= temp_maxima && stare_centrala == ON){
+	if(stare_mod_vara == OFF){
+		if(temp_medie <= temp_setata && stare_centrala == OFF){
+			Centrala.sendCommand(ON)
+		} else if(temp_medie >= temp_maxima && stare_centrala == ON){
+			Centrala.sendCommand(OFF)
+		}
+	}else{
 		Centrala.sendCommand(OFF)
 	}
+		
+
 	
+end
+
+rule "Info rpi"
+when
+	 Item CPUTemp changed
+then
+	val temp_cpu = (Integer::parseInt(String::format("%s", CPUTemp.state)))
+	val stare_vent = ventilatorCPU.state
+	if(temp_cpu >= 49 && stare_vent == OFF){
+		ventilatorCPU.sendCommand(ON)
+	} else if(temp_cpu <= 31 && stare_vent == ON){
+		ventilatorCPU.sendCommand(OFF)
+	}
 end

@@ -1,0 +1,1 @@
+Thing exec:command:cpu_rpi [command="python /home/pi/temp_cpu.py", interval=15, timeout=5, autorun=true]

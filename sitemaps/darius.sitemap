@@ -8,15 +8,16 @@ sitemap darius label="Casa Lupșa" {
 	Text item=vremea_nori icon="sun_clouds"
    }
     Frame label="Caldura" {
-        Switch item=Centrala icon="heating"
-	Setpoint item=setare_temperatura label="Setare temperatura [%.1f °C]" minValue=18.0 maxValue=26.0 step=0.3
+        Switch item=Centrala	icon="heating"
+	Switch item=mod_vara	icon="switch"
+	Setpoint item=setare_temperatura label="Setare temperatura [%.1f °C]" minValue=18.0 maxValue=24.0 step=0.2
 	Text item=temperatura_medie label="Temperatura medie [%.1f °C]"
 	Group item=Heating label="Temperatura in fiecare camera"
 	//Text item=darius1_temperatura label="Darius_1 [%.1f °C]" icon="temperature"
 	//Text item=darius_temperatura label="Darius [%.1f °C]" icon="temperature"
     }
-    Frame label="Lumini" {
-	Switch item=Lampa icon="switch"
+    Frame label="Info sistem" {
+	Switch item=ventilatorCPU label="Ventilator CPU" icon="switch"
+	Text item=CPUTemp
     }
-    
 }

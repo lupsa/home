@@ -1,0 +1,10 @@
+
+Strategies {
+	everyHour : "0 0 * * * ?"
+	every5Minutes : "0 */5 * * * ?"	
+	default = everyUpdate
+}
+Items {
+	setare_temperatura: strategy  = everyChange, restoreOnStartup 
+	* : strategy = everyChange
+}
