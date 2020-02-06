@@ -25,15 +25,15 @@ then
 	
 end
 
-rule "Info rpi"
+rule "Info system rpi"
 when
 	 Item CPUTemp changed
 then
-	val temp_cpu = (Integer::parseInt(String::format("%s", CPUTemp.state)))
+	val temp_cpu = (Float::parseFloat(String::format("%s", CPUTemp.state)))
 	val stare_vent = ventilatorCPU.state
-	if(temp_cpu >= 49 && stare_vent == OFF){
+	if(temp_cpu >= 48.0 && stare_vent == OFF){
 		ventilatorCPU.sendCommand(ON)
-	} else if(temp_cpu <= 31 && stare_vent == ON){
+	} else if(temp_cpu <= 31.0 && stare_vent == ON){
 		ventilatorCPU.sendCommand(OFF)
 	}
 end

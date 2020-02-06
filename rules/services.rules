@@ -1,6 +1,6 @@
 rule "mesaj telegram"
 when
-	Item Centrala changed or Item Lampa changed
+	Item Centrala changed or Item ventilatorCPU changed
 then
 	val dispozitiv = triggeringItem.name
 	val switch_stare = triggeringItem.state
